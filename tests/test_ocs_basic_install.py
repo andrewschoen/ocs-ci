@@ -12,6 +12,7 @@ from ocs.utils import create_oc_resource
 from utility import templating
 from utility.aws import AWS
 from utility.retry import retry
+from getpass import getuser
 from utility.utils import run_cmd, download_file
 
 log = logging.getLogger(__name__)
@@ -34,7 +35,8 @@ def run(**kwargs):
     log.info("Generating install-config")
     # TODO: determine better place to create cluster directories - (log dir?)
     cluster_dir_parent = "/tmp"
-    base_name = test_data.get('cluster-name', 'ocs-ci-cluster')
+    default_cluster_name = f"ocs-ci-cluster-{getuser()}"
+    base_name = test_data.get('cluster-name', default_cluster_name)
     cid = random.randint(10000, 99999)
     cluster_name = f'{base_name}-{cid}'
 
