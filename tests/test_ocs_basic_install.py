@@ -35,7 +35,7 @@ def run(**kwargs):
     log.info("Generating install-config")
     # TODO: determine better place to create cluster directories - (log dir?)
     cluster_dir_parent = "/tmp"
-    default_cluster_name = f"ocs-ci-cluster-{getuser()}"
+    default_cluster_name = f"ocs-ci-{getuser()}"
     base_name = test_data.get('cluster-name', default_cluster_name)
     cid = random.randint(10000, 99999)
     cluster_name = f'{base_name}-{cid}'
